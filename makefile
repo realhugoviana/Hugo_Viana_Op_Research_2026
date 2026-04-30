@@ -24,6 +24,10 @@ $(TARGET): $(OBJS)
 %.o: %.c graph.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
+test:
+	gcc -Wall -Wextra -std=c11 -Iinclude src/graph.c tests/test_graph.c -o test_runner
+	./test_runner
+
 # Nettoyage des fichiers objets
 clean:
 	rm -f $(OBJS)

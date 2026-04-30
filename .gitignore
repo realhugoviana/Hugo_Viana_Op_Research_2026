@@ -56,3 +56,4 @@ dkms.conf
 
 graph_data.txt
 flowSolver
+test_runner
