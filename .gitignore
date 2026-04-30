@@ -53,3 +53,6 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+graph_data.txt
+flowSolver
