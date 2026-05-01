@@ -9,8 +9,8 @@
 // simple graph: 0 → 1 → 2, cap=10, s=0, t=2
 static Graph* make_simple_graph() {
     Graph* g = create_graph(3, 0, 2);
-    add_arc(g, 0, 1, 10, 0);
-    add_arc(g, 1, 2, 10, 0);
+    add_arc(g, 0, 1, 0, 10, 0);
+    add_arc(g, 1, 2, 0, 10, 0);
     return g;
 }
 
@@ -19,10 +19,10 @@ static Graph* make_simple_graph() {
 //   0 → 2 → 3  (cap 5)
 static Graph* make_parallel_graph() {
     Graph* g = create_graph(4, 0, 3);
-    add_arc(g, 0, 1, 10, 0);
-    add_arc(g, 1, 3, 10, 0);
-    add_arc(g, 0, 2,  5, 0);
-    add_arc(g, 2, 3,  5, 0);
+    add_arc(g, 0, 1, 0, 10, 0);
+    add_arc(g, 1, 3, 0, 10, 0);
+    add_arc(g, 0, 2, 0, 5, 0);
+    add_arc(g, 2, 3, 0, 5, 0);
     return g;
 }
 
@@ -32,9 +32,9 @@ static Graph* make_parallel_graph() {
 //   2 → 3 (cap 10)
 static Graph* make_bottleneck_graph() {
     Graph* g = create_graph(4, 0, 3);
-    add_arc(g, 0, 1, 10, 0);
-    add_arc(g, 1, 2,  3, 0);
-    add_arc(g, 2, 3, 10, 0);
+    add_arc(g, 0, 1, 0, 10, 0);
+    add_arc(g, 1, 2, 0, 3, 0);
+    add_arc(g, 2, 3, 0, 10, 0);
     return g;
 }
 
@@ -59,7 +59,7 @@ void test_dfs_finds_path() {
 
 void test_dfs_no_path() {
     Graph* g = create_graph(3, 0, 2);
-    add_arc(g, 0, 1, 10, 0);
+    add_arc(g, 0, 1, 0, 10, 0);
     
     Arc** parent = calloc(g->num_nodes, sizeof(Arc*));
     bool* visited = calloc(g->num_nodes, sizeof(bool));
@@ -175,7 +175,7 @@ void test_ff_bottleneck() {
 
 void test_ff_no_path() {
     Graph* g = create_graph(3, 0, 2);
-    add_arc(g, 0, 1, 10, 0);
+    add_arc(g, 0, 1, 0, 10, 0);
     int flow = ford_fulkerson(g, dfs);
     assert(flow == 0);
     free_graph(g);

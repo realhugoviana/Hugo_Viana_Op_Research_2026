@@ -8,7 +8,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11 -O2 -Iinclude
 
 # Fichiers sources
-SRCS = src/main.c src/graph.c src/ford_fulkerson.c
+SRCS = src/main.c src/graph.c src/ford_fulkerson.c src/min_cost.c
 
 # Fichiers objets
 OBJS = $(SRCS:.c=.o)
@@ -21,7 +21,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
 # Compilation des .c en .o
-%.o: %.c graph.h ford_fulkerson.h
+%.o: %.c graph.h ford_fulkerson.h min_cost.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test:

@@ -17,7 +17,7 @@ void test_create_graph() {
 
 void test_add_arc() {
     Graph* g = create_graph(3, 0, 2);
-    add_arc(g, 0, 1, 10, 5);
+    add_arc(g, 0, 1, 0, 10, 5);
     Arc* arc = g->nodes[0].arcs;
 
     assert(arc != NULL);
@@ -32,7 +32,7 @@ void test_add_arc() {
 
 void test_residual_link() {
     Graph* g = create_graph(2, 0, 1);
-    add_arc(g, 0, 1, 10, 5);
+    add_arc(g, 0, 1, 0, 10, 5);
     Arc* forward = g->nodes[0].arcs;
     Arc* backward = g->nodes[1].arcs;
 

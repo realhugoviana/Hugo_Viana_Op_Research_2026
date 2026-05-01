@@ -7,6 +7,7 @@
 
 typedef struct Arc {
     int node_to;
+    int min_capacity;
     int capacity;
     int cost;
     int flow;
@@ -26,9 +27,9 @@ typedef struct Graph {
 
 Graph* create_graph(int num_nodes, int s, int t);
 
-Arc* allocate_arc(Graph* graph, int from, int to, int capacity, int cost, int flow);
+Arc* allocate_arc(Graph* graph, int from, int to, int min_capacity, int capacity, int cost, int flow);
 
-void add_arc(Graph* graph, int from, int to, int capacity, int cost);
+void add_arc(Graph* graph, int from, int to, int min_capacity, int capacity, int cost);
 
 void free_arcs(Arc* arc);
 
