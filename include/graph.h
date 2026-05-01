@@ -36,4 +36,8 @@ void free_graph(Graph* graph);
 
 Graph* read_graph_stdin();
 
+int residual_cap(Arc* arc);
+
+void push_flow(Arc* a, int delta);
+
 #endif

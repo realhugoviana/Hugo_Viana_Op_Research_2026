@@ -58,3 +58,12 @@ Graph* read_graph_stdin() {
     }
     return graph;
 }
+
+int residual_cap(Arc* arc) {
+    return arc->capacity - arc->flow;
+}
+
+void push_flow(Arc* a, int delta) {
+    a->flow += delta;
+    a->residual->flow -= delta;
+}
