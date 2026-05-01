@@ -25,7 +25,13 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test:
-	gcc -Wall -Wextra -std=c11 -Iinclude src/graph.c tests/test_graph.c -o test_runner
+	gcc -Wall -Wextra -std=c11 -Iinclude \
+		src/graph.c \
+		src/ford_fulkerson.c \
+		tests/test_graph.c \
+		tests/test_ford_fulkerson.c \
+		tests/test_main.c \
+		-o test_runner
 	./test_runner
 
 # Nettoyage des fichiers objets

@@ -42,14 +42,3 @@ void test_residual_link() {
     free_graph(g);
     printf("test_residual_link OK\n");
 }
-
-int main() {
-    test_create_graph();
-    test_add_arc();
-    test_residual_link();
-
-    printf("ALL TESTS PASSED ✅\n");
-
-    return 0;
-
-}
