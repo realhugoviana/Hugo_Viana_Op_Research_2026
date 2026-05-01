@@ -18,6 +18,16 @@ void test_ff_bottleneck();
 void test_ff_no_path();
 void test_min_cut_equals_max_flow();
 
+// min_cost
+void test_bellman_ford_simple();
+void test_bellman_ford_negative();
+void test_dijkstra_simple();
+void test_mcf_bf_simple();
+void test_mcf_bf_choice();
+void test_mcf_bf_negative();
+void test_mcf_dijkstra_simple();
+void test_mcf_dijkstra_choice();
+
 int main() {
     test_create_graph();
     test_add_arc();
@@ -34,6 +44,15 @@ int main() {
     test_ff_bottleneck();
     test_ff_no_path();
     test_min_cut_equals_max_flow();
+
+    test_bellman_ford_simple();
+    test_bellman_ford_negative();
+    test_dijkstra_simple();
+    test_mcf_bf_simple();
+    test_mcf_bf_choice();
+    test_mcf_bf_negative();
+    test_mcf_dijkstra_simple();
+    test_mcf_dijkstra_choice();
 
     printf("ALL TESTS PASSED ✅\n");
     return 0;
