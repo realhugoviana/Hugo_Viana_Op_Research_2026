@@ -1,6 +1,5 @@
 # Operations research
-### Hugo Viana
-### 2026
+### Hugo Viana - 2026
 
 Implémentation en C de plusieurs algorithmes de flot sur graphe, avec visualisation pas-à-pas via Graphviz.
 
@@ -37,7 +36,8 @@ Implémentation en C de plusieurs algorithmes de flot sur graphe, avec visualisa
 │   ├── test_min_cost.c
 │   └── test_negative_cycle.c
 ├── Makefile
-└── README.md
+├── README.md
+└── LICENCE
 ```
 
 ## Compilation
@@ -96,7 +96,7 @@ Exemple :
 
 ## Visualisation
 
-Chaque algorithme génère automatiquement des fichiers `.dot` dans le dossier `steps/` (ou le dossier spécifié avec `--output`), un par étape :
+Chaque algorithme génère automatiquement des fichiers `.dot` dans le dossier spécifié avec `--output`, un par étape :
 
 - `step_000.dot` → état initial
 - `step_001.dot` → chemin augmentant trouvé (en rouge)
@@ -107,10 +107,10 @@ Pour convertir en images PNG, Graphviz doit être installé :
 
 ```bash
 # Installation Graphviz
-brew install graphviz        # macOS
 sudo apt install graphviz    # Ubuntu/Debian
+brew install graphviz        # macOS
 
-# Conversion des .dot en .png
+# Conversion des .dot en .png depuis le dossier de sortie spécifié
 for f in step_*.dot; do
     dot -Tpng "$f" -o "${f%.dot}.png"
 done
