@@ -7,7 +7,8 @@ CFLAGS = -Wall -Wextra -std=c11 -O2 -Iinclude
 SRCS = src/main.c \
        src/graph.c \
        src/ford_fulkerson.c \
-       src/min_cost.c
+       src/min_cost.c \
+	   src/negative_cycle.c
 
 OBJS = $(SRCS:.c=.o)
 
