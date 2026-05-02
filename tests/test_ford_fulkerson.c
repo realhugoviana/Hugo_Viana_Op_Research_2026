@@ -151,7 +151,7 @@ void test_augment_updates_flow() {
 
 void test_ff_simple() {
     Graph* g = make_simple_graph();
-    int flow = ford_fulkerson(g, dfs);
+    int flow = ford_fulkerson(g, dfs, NULL);
     assert(flow == 10);
     free_graph(g);
     printf("test_ff_simple OK\n");
@@ -159,7 +159,7 @@ void test_ff_simple() {
 
 void test_ff_parallel() {
     Graph* g = make_parallel_graph();
-    int flow = ford_fulkerson(g, dfs);
+    int flow = ford_fulkerson(g, dfs, NULL);
     assert(flow == 15);
     free_graph(g);
     printf("test_ff_parallel OK\n");
@@ -167,7 +167,7 @@ void test_ff_parallel() {
 
 void test_ff_bottleneck() {
     Graph* g = make_bottleneck_graph();
-    int flow = ford_fulkerson(g, dfs);
+    int flow = ford_fulkerson(g, dfs, NULL);
     assert(flow == 3);
     free_graph(g);
     printf("test_ff_bottleneck OK\n");
@@ -176,7 +176,7 @@ void test_ff_bottleneck() {
 void test_ff_no_path() {
     Graph* g = create_graph(3, 0, 2);
     add_arc(g, 0, 1, 0, 10, 0);
-    int flow = ford_fulkerson(g, dfs);
+    int flow = ford_fulkerson(g, dfs, NULL);
     assert(flow == 0);
     free_graph(g);
     printf("test_ff_no_path OK\n");
@@ -186,7 +186,7 @@ void test_ff_no_path() {
 
 void test_min_cut_equals_max_flow() {
     Graph* g = make_parallel_graph();
-    int max_flow = ford_fulkerson(g, dfs);
+    int max_flow = ford_fulkerson(g, dfs, NULL);
     int cut_size = 0;
     Arc** cut = min_cut(g, &cut_size);
 

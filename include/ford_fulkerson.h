@@ -11,7 +11,7 @@ int bottleneck(Graph* graph, Arc** parent);
 
 void augment(Graph* graph, Arc** parent, int delta);
 
-int ford_fulkerson(Graph* graph, find_path_fn find_path);
+int ford_fulkerson(Graph* graph, find_path_fn find_path, const char* output_dir);
 
 Arc** min_cut(Graph* graph, int* cut_size);
 

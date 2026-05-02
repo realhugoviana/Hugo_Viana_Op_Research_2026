@@ -106,7 +106,7 @@ void test_mcf_bf_simple() {
     Graph* g = make_simple_cost_graph();
 
     int cost = 0;
-    int flow = min_cost_flow_bf(g, &cost);
+    int flow = min_cost_flow_bf(g, &cost, NULL);
 
     assert(flow == 10);
     assert(cost == 30); // 10 * (1+2)
@@ -119,7 +119,7 @@ void test_mcf_bf_choice() {
     Graph* g = make_choice_graph();
 
     int cost = 0;
-    int flow = min_cost_flow_bf(g, &cost);
+    int flow = min_cost_flow_bf(g, &cost, NULL);
 
     assert(flow == 10);
 
@@ -134,7 +134,7 @@ void test_mcf_bf_negative() {
     Graph* g = make_negative_graph();
 
     int cost = 0;
-    int flow = min_cost_flow_bf(g, &cost);
+    int flow = min_cost_flow_bf(g, &cost, NULL);
 
     assert(flow == 10);
     assert(cost == 10 * 1); // -2 + 3 = 1 per unit
@@ -153,7 +153,7 @@ void test_mcf_dijkstra_simple() {
     Graph* g = make_simple_cost_graph();
 
     int cost = 0;
-    int flow = min_cost_flow_dijkstra(g, &cost);
+    int flow = min_cost_flow_dijkstra(g, &cost, NULL);
 
     assert(flow == 10);
     assert(cost == 30);
@@ -166,7 +166,7 @@ void test_mcf_dijkstra_choice() {
     Graph* g = make_choice_graph();
 
     int cost = 0;
-    int flow = min_cost_flow_dijkstra(g, &cost);
+    int flow = min_cost_flow_dijkstra(g, &cost, NULL);
 
     assert(flow == 10);
     assert(cost == 5 * 2 + 5 * 6);

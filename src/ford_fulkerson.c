@@ -3,8 +3,10 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <string.h>
+
 #include "ford_fulkerson.h"
 #include "graph.h"
+#include "viz.h"
 
 
 bool dfs(Graph* graph, Arc** parent, bool* visited) {
@@ -59,25 +61,6 @@ void augment(Graph* graph, Arc** parent, int delta) {
     }
 }
 
-int ford_fulkerson(Graph* graph, find_path_fn find_path) {
-    Arc**  parent   = calloc(graph->num_nodes, sizeof(Arc*));
-    bool*  visited  = calloc(graph->num_nodes, sizeof(bool));
-    int    max_flow = 0;
-
-    while (find_path(graph, parent, visited)) {
-        int delta = bottleneck(graph, parent);
-        augment(graph, parent, delta);
-        max_flow += delta;
-
-        memset(parent,  0, graph->num_nodes * sizeof(Arc*));
-        memset(visited, 0, graph->num_nodes * sizeof(bool));
-    }
-
-    free(parent);
-    free(visited);
-    return max_flow;
-}
-
 Arc** min_cut(Graph* graph, int* cut_size) {
     Arc** cut    = malloc(graph->num_nodes * graph->num_nodes * sizeof(Arc*));
     int   idx    = 0;
@@ -98,4 +81,36 @@ Arc** min_cut(Graph* graph, int* cut_size) {
     free(visited);
     *cut_size = idx;
     return cut;
+}
+
+int ford_fulkerson(Graph* graph, find_path_fn find_path, const char* output_dir) {
+    Arc** parent = calloc(graph->num_nodes, sizeof(Arc*));
+    bool* visited = calloc(graph->num_nodes, sizeof(bool));
+    int max_flow = 0;
+    int step = 0;
+
+    dump_dot(graph, step++, NULL, NULL, 0, output_dir);
+
+    while (find_path(graph, parent, visited)) {
+        dump_dot(graph, step++, parent, NULL, 0, output_dir);
+
+        int delta = bottleneck(graph, parent);
+        augment(graph, parent, delta);
+        max_flow += delta;
+
+        dump_dot(graph, step++, NULL, NULL, 0, output_dir);
+
+        memset(parent,  0, graph->num_nodes * sizeof(Arc*));
+        memset(visited, 0, graph->num_nodes * sizeof(bool));
+    }
+
+    int cut_size;
+    Arc** cut = min_cut(graph, &cut_size);
+    dump_dot(graph, step, NULL, cut, cut_size, output_dir);
+    printf("Min cut capacity : %d\n", max_flow);
+    free(cut);
+
+    free(parent);
+    free(visited);
+    return max_flow;
 }

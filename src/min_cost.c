@@ -3,6 +3,8 @@
 
 #include "min_cost.h"
 #include "ford_fulkerson.h"
+#include "graph.h"
+#include "viz.h"
 
 bool bellman_ford(Graph* graph, Arc** parent, int* dist) {
     int n = graph->num_nodes;
@@ -30,17 +32,24 @@ bool bellman_ford(Graph* graph, Arc** parent, int* dist) {
     return dist[graph->t] != INT_MAX;
 }
 
-int min_cost_flow_bf(Graph* graph, int* total_cost) {
+int min_cost_flow_bf(Graph* graph, int* total_cost, const char* output_dir) {
     Arc** parent = calloc(graph->num_nodes, sizeof(Arc*));
     int* dist = malloc(graph->num_nodes * sizeof(int));
     int flow = 0;
+    int step = 0;
     *total_cost = 0;
 
+    dump_dot(graph, step++, NULL, NULL, 0, output_dir);
+
     while (bellman_ford(graph, parent, dist)) {
+        dump_dot(graph, step++, parent, NULL, 0, output_dir);
+
         int delta = bottleneck(graph, parent);
         augment(graph, parent, delta);
         flow += delta;
         *total_cost += delta * dist[graph->t];
+
+        dump_dot(graph, step++, NULL, NULL, 0, output_dir);
 
         memset(parent, 0, graph->num_nodes * sizeof(Arc*));
     }
@@ -88,18 +97,25 @@ bool dijkstra(Graph* graph, Arc** parent, int* dist, int* potentials) {
     return dist[graph->t] != INT_MAX;
 }
 
-int min_cost_flow_dijkstra(Graph* graph, int* total_cost) {
+int min_cost_flow_dijkstra(Graph* graph, int* total_cost, const char* output_dir) {
     Arc** parent = calloc(graph->num_nodes, sizeof(Arc*));
     int* dist = malloc(graph->num_nodes * sizeof(int));
     int* potentials = calloc(graph->num_nodes, sizeof(int));
     int flow = 0;
+    int step = 0;
     *total_cost = 0;
 
+    dump_dot(graph, step++, NULL, NULL, 0, output_dir);
+
     while (dijkstra(graph, parent, dist, potentials)) {
+        dump_dot(graph, step++, parent, NULL, 0, output_dir);
+
         int delta = bottleneck(graph, parent);
         augment(graph, parent, delta);
         flow += delta;
         *total_cost += delta * potentials[graph->t];
+
+        dump_dot(graph, step++, NULL, NULL, 0, output_dir);
 
         memset(parent, 0, graph->num_nodes * sizeof(Arc*));
     }

@@ -8,7 +8,8 @@ SRCS = src/main.c \
        src/graph.c \
        src/ford_fulkerson.c \
        src/min_cost.c \
-	   src/negative_cycle.c
+	   src/negative_cycle.c \
+	   src/viz.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -29,6 +30,7 @@ TEST_SRCS = \
 	src/graph.c \
 	src/ford_fulkerson.c \
 	src/min_cost.c \
+	src/viz.c \
 	src/negative_cycle.c
 
 test:
