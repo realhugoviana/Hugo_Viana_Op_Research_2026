@@ -24,10 +24,12 @@ TEST_SRCS = \
 	tests/test_graph.c \
 	tests/test_ford_fulkerson.c \
 	tests/test_min_cost.c \
+	tests/test_negative_cycle.c \
 	tests/test_main.c \
 	src/graph.c \
 	src/ford_fulkerson.c \
-	src/min_cost.c
+	src/min_cost.c \
+	src/negative_cycle.c
 
 test:
 	$(CC) $(CFLAGS) $(TEST_SRCS) -o test_runner

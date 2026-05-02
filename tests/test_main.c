@@ -28,6 +28,15 @@ void test_mcf_bf_negative();
 void test_mcf_dijkstra_simple();
 void test_mcf_dijkstra_choice();
 
+// negative_cycle
+void test_detect_no_negative_cycle();
+void test_detect_negative_cycle_found();
+void test_detect_positive_cycle();
+void test_detect_unreachable_negative_cycle();
+void test_extract_cycle_size();
+void test_extract_cycle_negative_cost();
+void test_extract_cycle_valid_arcs();
+
 int main() {
     test_create_graph();
     test_add_arc();
@@ -53,6 +62,14 @@ int main() {
     test_mcf_bf_negative();
     test_mcf_dijkstra_simple();
     test_mcf_dijkstra_choice();
+
+    test_detect_no_negative_cycle();
+    test_detect_negative_cycle_found();
+    test_detect_positive_cycle();
+    test_detect_unreachable_negative_cycle();
+    test_extract_cycle_size();
+    test_extract_cycle_negative_cost();
+    test_extract_cycle_valid_arcs();
 
     printf("ALL TESTS PASSED ✅\n");
     return 0;
