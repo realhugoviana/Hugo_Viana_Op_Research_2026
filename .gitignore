@@ -55,5 +55,8 @@ dkms.conf
 *.dwo
 
 graph_data.txt
+graph_data2.txt
 flowSolver
 test_runner
+
+output/
