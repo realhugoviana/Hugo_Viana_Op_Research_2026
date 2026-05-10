@@ -1,6 +1,8 @@
 # Operations research
 ### Hugo Viana - 2026
 
+![Demo](output.gif)
+
 Implémentation en C de plusieurs algorithmes de flot sur graphe, avec visualisation pas-à-pas via Graphviz.
 
 ## Algorithmes implémentés
