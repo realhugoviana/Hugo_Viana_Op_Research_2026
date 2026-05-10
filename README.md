@@ -39,6 +39,8 @@ Implémentation en C de plusieurs algorithmes de flot sur graphe, avec visualisa
 │   └── test_negative_cycle.c
 ├── Makefile
 ├── README.md
+├── Rapport.pdf
+├── output.gif
 └── LICENCE
 ```
 

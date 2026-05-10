@@ -60,3 +60,6 @@ flowSolver
 test_runner
 
 output/
+
+.claude/
+.vscode/
